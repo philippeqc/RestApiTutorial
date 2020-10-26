@@ -11,7 +11,7 @@ using Tweetbook.Services;
 
 namespace Tweetbook.Installers
 {
-    public class DataInstaller : IInstaller
+    public class DbInstaller : IInstaller
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
@@ -22,7 +22,8 @@ namespace Tweetbook.Installers
                 .AddEntityFrameworkStores<DataContext>();
 
             // Should be scoped like the dbContext
-            services.AddScoped<IPostService, PostService>();
+            //services.AddScoped<IPostService, PostService>();
+            services.AddSingleton<IPostService, CosmosPostService>();
         }
     }
 }
