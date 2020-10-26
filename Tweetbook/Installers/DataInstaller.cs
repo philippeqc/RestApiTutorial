@@ -17,11 +17,12 @@ namespace Tweetbook.Installers
         {
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection")));
+                    configuration.GetConnectionString("RestApiConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<DataContext>();
 
-            services.AddSingleton<IPostService, PostService>();
+            // Should be scoped like the dbContext
+            services.AddScoped<IPostService, PostService>();
         }
     }
 }
