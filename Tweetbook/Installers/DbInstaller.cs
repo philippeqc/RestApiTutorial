@@ -22,8 +22,10 @@ namespace Tweetbook.Installers
                 .AddEntityFrameworkStores<DataContext>();
 
             // Should be scoped like the dbContext
-            //services.AddScoped<IPostService, PostService>();
-            services.AddSingleton<IPostService, CosmosPostService>();
+            services.AddScoped<IPostService, PostService>();
+
+            // Decomment to use Cosmos Db
+            //services.AddSingleton<IPostService, CosmosPostService>();
         }
     }
 }
