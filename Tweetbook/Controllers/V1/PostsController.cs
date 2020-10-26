@@ -50,6 +50,17 @@ namespace Tweetbook.Controllers.V1
             return NotFound();
         }
 
+        [HttpDelete(ApiRoutes.Posts.Delete)]
+        public IActionResult Delete([FromRoute] Guid postId)
+        {
+            var deleted = _postService.DeletePost(postId);
+
+            if (deleted)
+                return Ok();
+
+            return NotFound();
+        }
+
         [HttpPost(ApiRoutes.Posts.Create)]
         public IActionResult Create([FromBody] CreatePostRequest postRequest)
         {
