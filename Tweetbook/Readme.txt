@@ -11,3 +11,5 @@ Add-Migration AddedPosts
 Cosmonaut
 Cosmonaut.Extensions.Microsoft.DependencyInjection
 
+##
+dotnet ef migrations add "Added_UserId_InPosts"
