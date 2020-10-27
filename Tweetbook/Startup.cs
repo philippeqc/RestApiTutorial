@@ -1,16 +1,10 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Tweetbook.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SwaggerOptions = Tweetbook.Options.SwaggerOptions;
-using Microsoft.OpenApi.Models;
-using System.Linq;
 using Tweetbook.Installers;
-using System;
+using SwaggerOptions = Tweetbook.Options.SwaggerOptions;
 
 namespace Tweetbook
 {
@@ -47,7 +41,7 @@ namespace Tweetbook
             app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
             app.UseSwaggerUI(option =>
             {
-                option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
+                option.SwaggerEndpoint(swaggerOptions.UiEndpoint, swaggerOptions.Description);
             });
 
             app.UseHttpsRedirection();

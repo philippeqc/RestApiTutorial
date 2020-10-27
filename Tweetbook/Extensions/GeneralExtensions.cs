@@ -7,7 +7,7 @@ namespace Tweetbook.Extensions
     {
         public static string GetUserId(this HttpContext httpContext)
         {
-            if(httpContext.User == null)
+            if (httpContext.User == null)
             {
                 return string.Empty;
             }
