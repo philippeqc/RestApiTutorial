@@ -13,3 +13,11 @@ Cosmonaut.Extensions.Microsoft.DependencyInjection
 
 ##
 dotnet ef migrations add "Added_UserId_InPosts"
+
+
+
+# Docker
+from the solution folder:
+
+docker-compose build
+docker-compose up
