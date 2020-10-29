@@ -2,7 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Tweetbook/bin/
-/Tweetbook/obj/
+*/bin/
+*/obj/
 .vs/RestApiTutorial/v16/.suo
 .vs/RestApiTutorial/DesignTimeBuild/.dtbcache.v2
+
