@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Tweetbook.Contracts.V1;
 using Tweetbook.Contracts.V1.Requests;
@@ -16,6 +18,7 @@ using Tweetbook.Services;
 namespace Tweetbook.Controllers.V1
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Produces("application/json")]
     public class PostsController : Controller
     {
         private readonly IPostService _postService;
@@ -34,7 +37,14 @@ namespace Tweetbook.Controllers.V1
             return Ok(_mapper.Map<List<PostResponse>>(posts));
         }
 
+        /// <summary>
+        /// Returns a requested post in the system
+        /// </summary>
+        /// <response code="200">Returns a requested post in the system</response>
+        /// <response code="404">Unable to find the requested post in the system</response>
         [HttpGet(ApiRoutes.Posts.Get)]
+        [ProducesResponseType(typeof(PostResponse), 200)]
+        [ProducesResponseType(404)]
         public async Task<IActionResult> Get([FromRoute] Guid postId)
         {
             var post = await _postService.GetPostByIdAsync(postId);
@@ -66,14 +76,26 @@ namespace Tweetbook.Controllers.V1
             return NotFound();
         }
 
+        /// <summary>
+        /// Deletes a post in the system
+        /// </summary>
+        /// <response code="200">Deleted the post in the system</response>
+        /// <response code="400">Must own the post to delete it</response>
+        /// <response code="404">Unable to find the requested post in the system</response>
         [HttpDelete(ApiRoutes.Posts.Delete)]
+        //[ProducesResponseType(typeof(TagResponse), 201)]
+        //[ProducesResponseType(typeof(ErrorResponse), 400)]
+        [SwaggerResponse((int)HttpStatusCode.OK)]
+        [SwaggerResponse((int)HttpStatusCode.BadRequest, Type = typeof(ErrorResponse))]
+        [SwaggerResponse((int)HttpStatusCode.NotFound)]
+
         public async Task<IActionResult> Delete([FromRoute] Guid postId)
         {
             var userOwnsPost = await _postService.UserOwnsPostAsync(postId, HttpContext.GetUserId());
 
             if (!userOwnsPost)
             {
-                return BadRequest(new { error = "You do not own this post" });
+                return BadRequest(new ErrorResponse { Errors = new List<ErrorModel> { new ErrorModel { Message = "You do not own this post" } } });
             }
 
             var deleted = await _postService.DeletePostAsync(postId);
