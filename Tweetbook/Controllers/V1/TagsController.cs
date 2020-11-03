@@ -19,7 +19,7 @@ namespace Tweetbook.Controllers.V1
     public class TagsController : Controller
     {
         private readonly IPostService _postService;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
 
         public TagsController(IPostService postService, IMapper mapper)
         {
