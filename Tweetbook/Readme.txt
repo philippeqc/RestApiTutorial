@@ -15,6 +15,10 @@ Cosmonaut.Extensions.Microsoft.DependencyInjection
 dotnet ef migrations add "Added_UserId_InPosts"
 
 
+# Login info
+* email: nickfury@shield.com
+* password: Foobar!0
+
 
 # Docker
 from the solution folder:
@@ -35,3 +39,11 @@ Microsoft.EntityFrameworkCore.Infrastructure[10403]
       Entity Framework Core 3.1.9 initialized 'DataContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer' with options: None
 To undo this action, use Remove-Migration.
 
+
+# Integrating with Redis
+
+## Launch Redis
+docker run -p 6379:6379 redis
+
+## Consult Redis
+* Launch "Another Redis Desktop Manager"
