@@ -11,6 +11,5 @@ namespace Tweetbook.Controllers.V1
         {
             return Ok("I have no secrets");
         }
-
     }
 }

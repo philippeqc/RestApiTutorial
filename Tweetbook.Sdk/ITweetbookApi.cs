@@ -1,7 +1,7 @@
-﻿using Refit;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Refit;
 using Tweetbook.Contracts.V1.Requests;
 using Tweetbook.Contracts.V1.Responses;
 
@@ -11,17 +11,17 @@ namespace Tweetbook.Sdk
     public interface ITweetbookApi
     {
         [Get("/api/v1/posts")]
-        Task<ApiResponse<List<PostResponse>>> GetAllAsync();
-
+        Task<ApiResponse<PagedResponse<PostResponse>>> GetAllAsync();
+        
         [Get("/api/v1/posts/{postId}")]
-        Task<ApiResponse<PostResponse>> GetAsync(Guid postId);
-
+        Task<ApiResponse<Response<PostResponse>>> GetAsync(Guid postId);
+        
         [Post("/api/v1/posts")]
-        Task<ApiResponse<PostResponse>> CreateAsync([Body] CreatePostRequest createPostRequest);
-
+        Task<ApiResponse<Response<PostResponse>>> CreateAsync([Body] CreatePostRequest createPostRequest);
+        
         [Put("/api/v1/posts/{postId}")]
-        Task<ApiResponse<PostResponse>> UpdateAsync(Guid postId, [Body] UpdatePostRequest updatePostRequest);
-
+        Task<ApiResponse<Response<PostResponse>>> UpdateAsync(Guid postId, [Body] UpdatePostRequest updatePostRequest);
+        
         [Delete("/api/v1/posts/{postId}")]
         Task<ApiResponse<string>> DeleteAsync(Guid postId);
     }

@@ -79,7 +79,7 @@ namespace Tweetbook.Controllers.V1
 
             if (!userOwnsPost)
             {
-                return BadRequest(new { error = "You do not own this post" });
+                return BadRequest(new ErrorResponse(new ErrorModel{Message = "You do not own this post"}));
             }
 
             var post = await _postService.GetPostByIdAsync(postId);
@@ -111,13 +111,13 @@ namespace Tweetbook.Controllers.V1
 
             if (!userOwnsPost)
             {
-                return BadRequest(new ErrorResponse { Errors = new List<ErrorModel> { new ErrorModel { Message = "You do not own this post" } } });
+                return BadRequest(new ErrorResponse(new ErrorModel{Message = "You do not own this post"}));
             }
 
             var deleted = await _postService.DeletePostAsync(postId);
 
             if (deleted)
-                return Ok();
+                return NoContent();
 
             return NotFound();
         }

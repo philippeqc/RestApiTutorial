@@ -1,6 +1,6 @@
-﻿using Refit;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Refit;
 using Tweetbook.Contracts.V1.Requests;
 
 namespace Tweetbook.Sdk.Sample
@@ -19,13 +19,13 @@ namespace Tweetbook.Sdk.Sample
 
             var registerResponse = await identityApi.RegisterAsync(new UserRegistrationRequest
             {
-                Email = "sdkaccount@hotmail.com",
+                Email = "sdkaccount@gmail.com",
                 Password = "Test1234!"
             });
 
             var loginResponse = await identityApi.LoginAsync(new UserLoginRequest
             {
-                Email = "sdkaccount@hotmail.com",
+                Email = "sdkaccount@gmail.com",
                 Password = "Test1234!"
             });
 
@@ -41,14 +41,14 @@ namespace Tweetbook.Sdk.Sample
                 Tags = new[] {"sdk"}
             });
 
-            var retrievedPost = await tweetbookApi.GetAsync(createdPost.Content.Id);
+            var retrievedPost = await tweetbookApi.GetAsync(createdPost.Content.Data.Id);
 
-            var updatedPost = await tweetbookApi.UpdateAsync(createdPost.Content.Id, new UpdatePostRequest
+            var updatedPost = await tweetbookApi.UpdateAsync(createdPost.Content.Data.Id, new UpdatePostRequest
             {
                 Name = "This is updated by the SDK"
             });
 
-            var deletePost = await tweetbookApi.DeleteAsync(createdPost.Content.Id);
+            var deletePost = await tweetbookApi.DeleteAsync(createdPost.Content.Data.Id);
         }
     }
 }

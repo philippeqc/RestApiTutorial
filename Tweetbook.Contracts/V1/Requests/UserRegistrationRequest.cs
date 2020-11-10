@@ -6,6 +6,7 @@ namespace Tweetbook.Contracts.V1.Requests
     {
         [EmailAddress]
         public string Email { get; set; }
+
         public string Password { get; set; }
     }
 }

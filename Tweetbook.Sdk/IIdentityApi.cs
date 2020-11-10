@@ -1,5 +1,5 @@
-﻿using Refit;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Refit;
 using Tweetbook.Contracts.V1.Requests;
 using Tweetbook.Contracts.V1.Responses;
 

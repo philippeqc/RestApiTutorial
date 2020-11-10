@@ -1,6 +1,6 @@
 ﻿namespace Tweetbook.Contracts.V1.Requests.Queries
 {
-    public    class PaginationQuery
+    public class PaginationQuery
     {
         public PaginationQuery()
         {
@@ -15,6 +15,7 @@
         }
 
         public int PageNumber { get; set; }
+
         public int PageSize { get; set; }
     }
 }
