@@ -44,7 +44,7 @@ namespace Tweetbook.IntegrationTests
         protected async Task<PostResponse> CreatePostAsync(CreatePostRequest request)
         {
             var response = await TestClient.PostAsJsonAsync(ApiRoutes.Posts.Create, request);
-            return await response.Content.ReadAsAsync<PostResponse>();
+            return (await response.Content.ReadAsAsync<Response<PostResponse>>()).Data;
         }
 
         private async Task<string> GetJwtAsync()
@@ -56,7 +56,6 @@ namespace Tweetbook.IntegrationTests
             });
 
             var registrationResponse = await response.Content.ReadAsAsync<AuthSuccessResponse>();
-
             return registrationResponse.Token;
         }
 
