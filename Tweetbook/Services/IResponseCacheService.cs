@@ -5,7 +5,7 @@ namespace Tweetbook.Services
 {
     public interface IResponseCacheService
     {
-        Task CacheResponseAsync(String cacheKey, object response, TimeSpan timeTimeLive);
+        Task CacheResponseAsync(string cacheKey, object response, TimeSpan timeTimeLive);
 
         Task<string> GetCachedResponseAsync(string cacheKey);
     }

@@ -86,5 +86,9 @@ namespace Tweetbook.Services
             throw new NotImplementedException();
         }
 
+        public Task<List<Post>> GetPostsAsync(PaginationFilter paginationFilter = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

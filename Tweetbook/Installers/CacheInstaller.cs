@@ -13,7 +13,7 @@ namespace Tweetbook.Installers
             configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
             services.AddSingleton(redisCacheSettings);
 
-            if(!redisCacheSettings.Enabled)
+            if (!redisCacheSettings.Enabled)
             {
                 return;
             }
