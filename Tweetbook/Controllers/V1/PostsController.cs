@@ -15,6 +15,7 @@ using Tweetbook.Contracts.V1.Requests.Queries;
 using Tweetbook.Contracts.V1.Responses;
 using Tweetbook.Domain;
 using Tweetbook.Extensions;
+using Tweetbook.Filters;
 using Tweetbook.Helpers;
 using Tweetbook.Services;
 
@@ -37,10 +38,11 @@ namespace Tweetbook.Controllers.V1
 
         [HttpGet(ApiRoutes.Posts.GetAll)]
         [Cached(600)]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationQuery paginationQuery)
+        public async Task<IActionResult> GetAll([FromQuery] GetAllPostsQuery query, [FromQuery] PaginationQuery paginationQuery)
         {
             var paginationFilter = _mapper.Map<PaginationFilter>(paginationQuery);
-            var posts = await _postService.GetPostsAsync(paginationFilter);
+            var filter = _mapper.Map<GetAllPostsFilter>(query);
+            var posts = await _postService.GetPostsAsync(filter, paginationFilter);
 
             var postsResponse = _mapper.Map<List<PostResponse>>(posts);
 

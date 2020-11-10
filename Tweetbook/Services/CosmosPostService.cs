@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tweetbook.Domain;
+using Tweetbook.Filters;
 
 namespace Tweetbook.Services
 {
@@ -42,7 +43,7 @@ namespace Tweetbook.Services
             return post == null ? null : new Post { Id = Guid.Parse(post.Id), Name = post.Name };
         }
 
-        public async Task<List<Post>> GetPostsAsync()
+        public async Task<List<Post>> GetPostsAsync(GetAllPostsFilter filter = null, PaginationFilter paginationFilter = null)
         {
             var posts = await _cosmosStore.Query().ToListAsync();
 
@@ -82,11 +83,6 @@ namespace Tweetbook.Services
         }
 
         public Task<List<Tag>> GetAllTagsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Post>> GetPostsAsync(PaginationFilter paginationFilter = null)
         {
             throw new NotImplementedException();
         }
