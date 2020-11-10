@@ -45,5 +45,10 @@ To undo this action, use Remove-Migration.
 ## Launch Redis
 docker run -p 6379:6379 redis
 
+## Stop Redis
+docker ps
+find the id of the redis container, ex: 169, then
+docker stop 169
+
 ## Consult Redis
 * Launch "Another Redis Desktop Manager"
