@@ -7,3 +7,4 @@
 .vs/RestApiTutorial/v16/.suo
 .vs/RestApiTutorial/DesignTimeBuild/.dtbcache.v2
 
+*.testlog
