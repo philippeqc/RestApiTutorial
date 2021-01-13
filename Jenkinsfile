@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        docker { image 'node:14-alpine' }
+        docker { image 'mcr.microsoft.com/dotnet/aspnet:3.1' }
     }
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                bat 'dotnet --version'
             }
         }
     }
